@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src= "GHPcaesar.js"></script>
+  </head>
+  <body>
+    <h2>Modular Arithmetics</h2>
+    <p>The first thing to understand when trying to make sense of RSA encryption is modular arithmetics. Modular arithmetics is all about remainders. Think about dividing an integer by another integer: there always is a remainder even if the remainder is 0. In modular arithmetics, there is some notation to define before we can have some fun. Instead of explaining every mechanic in great detail, let's dive into some examples:</p>
+    
+    <p>2 &equiv; 2 (mod 3).<br>
+    5 &equiv; 2 (mod 3).<br>
+    8 &equiv; 2 (mod 3).<br>
+    7 &equiv; 1 (mod 3).
+    </p>
+    
+    <p>Do you notice a pattern? Each line is basically asking: What is the remainder when we divide 2 by 3, 5 by 3, 8 by 3, and 7 by 3. The reason 2, 5, and 8 all are congruent to 2 (mod 3) is because they are 2 away from a multiple of 3. It doesn't matter what multiple of 3; all that matters is that they are the same distance away from any multiple of 3. The general form of these congruences (they are called congruences instead of equations because the numbers are not exactly equal on both sides) is a &equiv; x (mod n). </p>
+    
+    <p>Modular arithmetics is also known as "clock arithmetic" because if you think about it, clocks are also an example of modular arithmetics. 13 o'clock is the same as 1 o'clock if you are converting from military time to a 12 hour clock. We can write this mathematically as 13 &equiv; 1 (mod 12) because both 13 and 1 give a remainder of 1 when we divide each number by 12. Indeed, a way to visualize modular arithmetics is by imagining numbers on a clock. After traveling a certain amount of units clockwise, you can manage to get to the same spot. Where you land is the remainder.</p>
+    
+    <p>It is important to realize the concept that modular arithmetics can be written without the weird and fancy notation. 13 &equiv; 1 (mod 12) can be written as 12k + 1 = 13, where k is an arbitrary integer. This is because the factor of 12 does not matter as long as the distance from 13 to any factor of 12 can be 1.</p>
+    
+    <p>Finally, modular arithmetics does have a slight quirk. You can skip it if you want to, but basically modular arithmetics work slightly differently with negative numbers. Modular arithmetics doesn't always find the remainder with negative numbers. This is because modular arithmetics is equivalent to finding the positive integers that you can add to a multiple of the modulo. In simple terms, the key word is that modular arithmetics converts the remainder to be positive even when dealing with negative numbers, and this is a slight complication. But the reason this needs to be cleared up is because the slightly more complicated version of modular arithmetics involving negative numbers makes more mathematical sense and theorems that work with positive numbers can also work with negative numbers.</p>
+  </body>
+</html>

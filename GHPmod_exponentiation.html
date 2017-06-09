@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="GHPcaesar.js"></script>
+  </head>
+  <body>
+    <h2>Modular Exponentiation: Speeding Up RSA Encryption</h2>
+    <p>A problem with RSA encryption is that every time someone used it, one would need to compute "large number message"<sup>"large exponent"</sup> &equiv; "long ciphertext number" (mod "really really large modulo"). As you can see, the algorithm uses large numbers in almost every single circumstance, and this could potentially be very difficult for a computer to compute. Luckily, you can still use the internet because somebody figured out an easy way to compute large exponents and mods using something called modular exponentiation. The general idea is to break the exponent down into smaller bits. Let's do an example.</p>
+    <p>Try computing 3<sup>7</sup> mod 5. Instead of computing 3<sup>7</sup> and then dividing by 5, we will break down the exponent.<br>
+    First, notice that 3<sup>7</sup> is equal to (3<sup>4</sup>)(3<sup>2</sup>)(3<sup>1</sup>). Instead of computing 3<sup>7</sup> mod 5, we can compute each smaller factor mod 5 first:<br>
+    3<sup>1</sup> &equiv; 3 (mod 5).<br>
+    3<sup>2</sup> &equiv; 4 (mod 5).<br>
+    3<sup>4</sup> &equiv; 1 (mod 5). It is not necessary to compute 3<sup>4</sup>. Instead, one could square the previous result to obtain the new remainder. Using modulo rules, 3<sup>4</sup> mod 5 is the same as (3<sup>2</sup> mod 5)<sup>2</sup>, or 4<sup>2</sup> (mod 5). This keeps the exponents even smaller.<br>
+    Now that we have computed all the values, we can multiply each smaller value together to get (3<sup>4</sup>)(3<sup>2</sup>)(3<sup>1</sup>) &equiv; (1)(4)(3) &equiv; 12 &equiv; 2 (mod 5) instead of computing 3<sup>7</sup> = 2187 &equiv; 2 (mod 5). For a computer, this is more efficient as the numbers and exponents get larger because using modular exponentiation, the numbers and exponents are considerably less (Lynn).
+    <p>This is easy for the computer to do, but what about the reverse? What if you were only given the remainder, mod, and number? The following problem is aptly named the RSA problem. There is also no proof that this is actually hard, but all of the algorithms so far have not been able to solve the RSA problem efficiently. Take the previous example. If m<sup>7</sup> &equiv; 2 (mod 5), what is a value of m? Guessing and checking would return values of 3, 8, 13, etc. This is easy because the numbers are small, but with larger numbers, the problem takes too long because a computer would need to guess-and-check many values (Lynn).</p>
+    
+    <h3>Modular Exponentiation</h3>
+    <form name = "moduloExponentiation">
+      Message (as a number): <input type="text" name= "number" value=""><br>
+      Public key (as a number): <input type="text" name= "exponent" value= ""><br>
+      Public key modulo (as a number): <input type="text" name= "modulo" value= ""><br>
+      <input type="button" value="Calculate!" onClick= "modularExponentiation1()">
+    </form>
+    <p id='moduloRemainder'></p>
+    
+    <form name = "moduloExponentiation2">
+      Encrypted Message (as a number): <input type="text" name= "number2" value=""><br>
+      Private key (as a number): <input type="text" name= "exponent2" value= ""><br>
+      Public key modulo (as a number): <input type="text" name= "modulo2" value= ""><br>
+      <input type="button" value="Calculate!" onClick= "modularExponentiation2()">
+    </form>
+    <p id='moduloRemainder2'></p>
+  </body>
+</html>

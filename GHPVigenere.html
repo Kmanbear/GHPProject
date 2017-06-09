@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src= "GHPcaesar.js"></script>
+  </head>
+  <body>
+    <h2>The Vigenere Cipher</h2>
+    <p>In the 16th century, a French diplomat named Blaise de Vigenere built off of the idea of a Caesar cipher. Using the chart below,  one could have a word become the key instead of a number. For example, if "abcdef" was the message and "abc" was the key, you would find the intersection between the first letter of the message and the first letter of the key. Once you reach the fourth letter, you can reuse the first letter of the key. This modified cipher was like a Caesar cipher with a constantly changing key. Unfortunately, it became obsolete after advancements in frequency analysis also broke the cipher.</p>
+    
+    <h3>Vigenere Cipher Encryption</h3>
+    <form name ="vigenere_encrypt">
+      Message: <input type="text" name= "message" value=""><br>
+      Key (as text): <input type="text" name= "key" value= ""><br>
+      <input type="button" value="Calculate!" onClick= "vigenereEncrypt()">
+    </form>
+    <p id= "Vigenere_Encrypted"></p>
+    
+    <h3>Vigenere Cipher Decryption</h3>
+    <form name ="vigenere_decrypt">
+      Message: <input type="text" name= "message" value=""><br>
+      Key (as text): <input type="text" name= "key" value= ""><br>
+      <input type="button" value="Calculate!" onClick= "vigenereDecrypt()">
+    </form>
+    <p id= "Vigenere_Decrypted"></p>
+  </body>
+</html>

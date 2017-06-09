@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="GHPcaesar.js"></script>
+  </head>
+  <body>
+    <h2>Modulo Inverses</h2>
+    <p>But before we go into the proof of Euler's theorem, we need to define another term: modulo inverses.</p>
+    
+    <p>Modulo inverses are in the form kx &equiv; 1 (mod n), where the inverse is the integer k. One property of modulo inverses is that an integer value of k only exists when the modulo n is coprime with the integer x. Instead of presenting a formal proof, let's explore some possibilities. Imagine of x was a factor of n and not coprime with n. Then, x would never be able to leave a remainder of 1. Imagine the clock representation of modulo arithmetics. x as an integer wouldn't be able to jump only 1 as each cycle, it will always land on the number n. The harder part is proving that an inverse always exist when x is coprime to n, but this is can be seen when the Extended Euclidean Algorithm is presented.</p>
+    <h2>The Extended Euclidean Algorithm</h2>
+    <p>The Extended Euclidean Algorithm is an extension of the Euclidean Algorithm, which provides an easy (for the computer) way to find the Greatest Common Divisor (GCD) without prime factorization. In elementary school, you may have learned that in order to find the GCD, you need to prime factorize both numbers and compare which factors are the same. This is a lie! (but necessary to understand the basic mechanics of GCD). The Euclidean Algorithm uses the fact that the GCD of two numbers x and y is the same as the GCD of y and x mod y. Basically, instead of finding the remainders of the two numbers, we can repeatedly divide until we obtain the GCD. Let's do an example:</p>
+    
+    <p>Find the GCD of 42 and 15.<br>
+    42 = 2(15) + 12<br>
+    15 = 1(12) + 3<br>
+    12 = 4(3) + 0. We are done now because there is nothing left to divide. Using the Euclidean Algorithm, we can see that the final divisor was 3, and 3 is the GCD of 42 and 15. Although this may be difficult to grasp, a helpful observation is that the only thing that doesn't divide 42 in the first equation is 12. If we could find the GCD of 15 and 12, we can find the smallest divisor that is a factor of 2(15) and 12. This consequently means that we can factor out a number x out of 2(15) and 12, so that 42 = x(2(15/x) + 12/x). The algorithm is recursive, and because the remainders get smaller and smaller each step, eventually, we will reach a small enough number to be the GCD.</p>
+    
+    <p>Let's do another example, but this time we will try to find the inverse of 27 mod 16. The first steps are the same:
+    </p>
+    <p>Find the GCD of 27 and 16. <br>
+    27 = 1(16) + 11 <br>
+    16 = 1(11) + 5<br>
+    11 = 2(5) + 1<br>
+    5 = 5(1) + 0. We are done. I chose these numbers because 27 and 16 are clearly coprime. According to the Euclidean Algorithm, 1 is the GCD of 27 and 16. But now we can do something clever. Let's rewrite each line by isolating the remainder:<br>
+    11 = 27 - 1(16)<br>
+    5 = 16 - 1(11)<br>
+    1 = 11 - 2(5)<br>
+    0 = 5 - 5(1) We can ignore the last line because it is not necessary. Starting from the second-to-last line, we can use substitution to rewrite 1 as a difference of multiples of 27 and 16.<br>
+    1 = 11 - 2(5)<br>
+    1 = 11 - 2(16 - 1(11)) Substituting third-to-last line for 2.<br>
+    1 = 11 - 2(16) + 2(11) Distributing.<br>
+    1 = 3(11) - 2(16) Combining like terms.<br><br>
+    1 = 3(27 - 1(16)) - 2(16) Starting over the cycle by substituting first line of the algorithm.<br>
+    1 = 3(27) - 3(16) - 2(16) Distributing.<br>
+    1 = 3(27) - 5(16) Combining like terms. This is basically the end result. Now all we need to do is add 5(16) to both sides: 1 + 5(16) = 3(27). If we rewrite this in modular notation, we get:<br>
+    3(27) &equiv; 1 (mod 16).</p>
+    
+    <p>Why is this important? Well, in modular arithmetics, this is as close to division as possible. Division is hard to incorporate in modular arithmetics because modular arithmetics only works with integers, and division can easily produce fractions. However, instead of dividing both sides by a certain number, we can multiply by the inverse to do the same thing provided that an inverse exists. For example, in order to solve the congruence 15x &equiv; 5 (mod 7), I can multiply by the inverse of 15 to cancel it out. The inverse of 15 mod 7 is 8, so I can multiply both sides by 8 to get x &equiv; 40 mod 7. This checks out because 40 &equiv; 5 (mod 7), and 5(15) = 75, which gives a remainder of 5 when divided by 7.</p>
+    
+    <p>Below, you can try out values that find the inverse modulo using the Extended Euclidean algorithm, but the program does not actually construct all of these equations. Instead, you can observe that the only thing the algorithm needs are the coefficients of the numbers.</p>
+    
+    <h3>Calculating Inverse Modulo to Generate D</h3>
+    <p>ax &equiv; 1 (mod n)</p>
+    <form name ="inverseMod">
+      a = <input type="text" name= "a" value=""><br>
+      n = <input type="text" name= "n" value= ""><br>
+      <input type="button" value="Calculate!" onClick= "generateD()">
+    </form>
+    <p id= "inverseModulo"></p>
+    <p id= "number"></p>
+    <p id= "mod"></p>
+  </body>
+</html>

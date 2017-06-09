@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src= "GHPcaesar.js"></script>
+  </head>
+  <body>
+    <h2>The Caesar Cipher</h2>
+    <p>The Caesar cipher is one of the oldest ciphers to have existed. It is also one of the simplest forms of encryption. It works by shifting each letter in a message by a certain number of letters. The key was simply the number of letters shifted right. In order to decrypt the encrypted message, one would simply need to shift the same number of letters to the left. Back then, this was a valuable encryption method because it would produce a ciphertext that would be unreadable. It would also take some testing to reveal the key, but frequency analysis led to the Caeser cipher easily being broken. A mathematical representation of the Caesar cipher would be (x+n) mod 26 or (x-n) mod 26. Below is a simple program that allows you to encrypt and decrypt using the Caesar cipher.</p>
+    
+    <h3>Caesar Cipher Encryption</h3>
+    <form name ="caesar_encrypt">
+      Message: <input type="text" name= "message" value=""><br>
+      Key (as a number): <input type="text" name= "key" value= ""><br>
+      <input type="button" value="Calculate!" onClick= "caesarEncrypt()">
+    </form>
+    <p id= "Encrypted"></p>
+    
+    <h3>Caesar Cipher Decryption</h3>
+    <form name ="caesar_decrypt">
+      Message: <input type="text" name= "message" value=""><br>
+      Key (as a number): <input type="text" name= "key" value= ""><br>
+      <input type="button" value="Calculate!" onClick= "caesarDecrypt()">
+    </form>
+    <p id= "Decrypted"></p>
+  </body>
+</html>

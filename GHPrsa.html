@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="GHPcaesar.js"></script>
+  </head>
+  <body>
+    <h2>How Euler's Theorem Connects to RSA Encryption</h2>
+    <p>This theorem is key to understanding RSA encryption because it IS the algorithm behind RSA encryption. All we need to do is modify the theorem. First, let's make the variable a the message (written in numbers using a basic cipher such as: a = 1, b = 2, c = 3, etc.) Next, we know that one to the power of anything is still one, so we can raise a<sup>&phi;(n)</sup> to anything and it will still work. Using exponent rules, we can rewrite this as a<sup>k * &phi;(n)</sup> &equiv; 1 (mod n). Finally, we can multiply both sides by a so that the final algorithm is:</p>
+    <p>a<sup>(k * &phi;(n) + 1)</sup> &equiv; a (mod n).</p>
+    
+    <p>How genius is this? Simply put, this algorithm is perfect. Ms. Blumenthal, if you are still reading this, then congratulations. Because this is the part where you are supposed to clap.
+    <h2>Why RSA Encryption Is Used?</h2>
+    <ol>
+      <li>The algorithm provides an easy way to generate keys. In order to generate keys, we first must identify which parts of the algorithm is the public key and which is the private key. Let's call the private key d and the public key e. If we let de = k*&phi;(n) + 1, then this would be the solution to the problem of the public and private key. This is because we could encrypt a message m by raising it to the e power. Mathematically, this would be: m<sup>e</sup> &equiv; c (mod n) where c is the ciphertext. The ciphertext is the encrypted message; it is made up of a jumble of seemingly-random numbers. In order to reverse it, we would then raise c to the power of d. This is equivalent to c<sup>d</sup> &equiv; m (mod n). Looking closer, the entire sequence of calculation is actually (m<sup>e</sup>)<sup>d</sup> &equiv; m (mod n). If de = k*&phi;(n) + 1, this property is satisfied. de = k*&phi;(n) + 1 is actually just a clever way of disguising the inverse modulo. It can be rewritten as de &equiv; 1 (mod &phi;(n)). We already know how to calculate modulo inverses easily, so this is why generating keys in RSA encryption is easy ("RSA (algorithm)").</li>
+      <li>The algorithm can not only encrypt, but it can also sign messages. Instead of raising the message m by the public key first, we can raise it to the private key first. At first, this would seem to make no sense because anyone in the world with the public key could decrypt the message. But this is precisely the point. If one were to be able to decrypt the message, then it would be obvious that the sender is in fact legitimate because only the sender could send a message that could be decrypted using the public key as only the sender possesses the private key in the first place.</li>
+      <li>The algorithm relies on two different one-way functions to ensure that nobody can break it (yet). First of all, it is important to review what easy and hard is for a computer. For example, say you were to try to multiply two primes, 223 and 191. This is annoying, but it requires very little thinking for even a human. All you would need to do is have a little patience as the problem is straightforward. With a computer, this calculation would be even faster and easier. This is why multiplication is easy. On the flip side, given 42593, how would you find the factors of this number? For a human, it would result in repeatedly guessing factors. For example, does 2 divide 42593? How about 3? 5? 7? 11? Even with a calculator at hand, guess-and-check would still be time-consuming. With enough effort, one could finally try 191 and realize that 191 * 223 equals 42593. Unfortunately, that would take a very long time for a human. For computers, the problem remains. Even with new algorithms, the problem of integer factorization still ends up being some sort of guess-and-check, especially with larger numbers with only two prime factors. Technically, prime factorization is not impossible, but with numbers with thousands of digits, it would take many years (or more) for the best supercomputers to factorize a number. RSA encryption takes advantage of this using the &phi;(n) function. In order to find out the private key, one would need the public key and the value of the totient function. The public key is easily obtainable (as it is public), but the totient function relies on prime factorization as the formula is (p-1)(q-1), where p and q are the prime factors. The only way to find the totient function value is by knowing the factors of a number as well. RSA encryption uses another one-way function, which will be discussed later.</li>
+    </ol>
+    <h2>RSA Key Generation</h2>
+    <p>Steps to RSA key generation:</p>
+    <ol>
+      <li>Choose to primes p and q.</li>
+      <li>Multiply the primes together to get an integer n. This is part of the public key.</li>
+      <li>Calculate &phi;(n), which is (p-1)(q-1). Note that this step is impossible without the original knowledge of the primes p and q.</li>
+      <li>Calculate a number e that is coprime to &phi;(n). This is necessary because e must be coprime to &phi;(n) in order for an inverse d to exist to undo the public key.</li>
+      <li>Now, calculate the inverse modulo to e. Let the inverse modulo be the value d, or the private key. Use the Extended Euclidean algorithm to speed up the process.</li>
+      <li>Now, the public key is (e, n) and the private key is d. Congratulations! You have completed the extremely lengthy tutorial on RSA key generation.</li>
+    </ol>
+    
+        <h3>RSA Key Generation</h3>
+    <form name ="rsaKeyGeneration">
+      First prime number: <input type="text" name= "prime1" value=""><br>
+      Second prime number: <input type="text" name= "prime2" value= ""><br>
+      <input type="button" value="Calculate!" onClick= "rsaKeyGenerator()">
+    </form>
+    <p id='publicKey'></p>
+    <p id='privateKey'></p>
+  </body>
+</html>
