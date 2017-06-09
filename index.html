@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src= "GHPcaesar.js"></script>
+    <style>
+      table, th, td{
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>How Has Cryptography Changed Over the Year?</h1>
+    <h3>Around 100 B.C.</h3>
+    <p>The Caesar cipher is a bit of a lame cipher. It was named after Julius Caesar, and marked one of the earliest attempts at cryptography.</p>
+    <a href="GHPCaesar.html">Learn about the Caeser cipher!</a><br>
+    <h3>16th Century</h3>
+    <p>The Vigenere cipher was an advanced form of the Caesar cipher. It had the same flaws as the Caesar cipher, but it was covered up by the increase in complexity of the cipher.</p>
+    <a href="GHPVigenere.html">Learn about the Vigenere cipher!</a>
+    <h3>RSA Encryption: Cryptography Today</h3>
+    <p>In order to come up with a perfect encryption system, people turned to mathematics. In 1982, Ronald Rivest, Adi Shamir, and Leonard Adleman made RSA encryption public to the world (Kaliski). The encryption algorithm used various mathematical techniques in order to securely transfer information.</p>
+    
+    <p>The goal of RSA encryption was to provide a way to use public keys and private keys. Previously, in order to communicate with someone, both parties would need to meet up and exchange private keys. However, this became troublesome when two parties could not personally exchange secret numbers. An example would be sending an email. When you send an email, are you always able to meet with the person and give them a secret key? RSA encryption solved this problem by using the concept of public and private keys. Instead of sharing private keys, one could send out a public key for everyone in the world to use. This public key is public; there is no hacking involved to obtain it. However, only the sender can decrypt the public key with a secret private key. A good metaphor would be sending out a lock instead of exchanging keys. By sending out an unlocked lock, anybody could write a message and lock it using your lock. Then, the receiving end could use their extremely secretive key and unlock the lock. </p>
+    
+    <p>To do this, the encryption algorithm needs to tackle various difficult challenges. First of all, it has to be extremely hard for a third party to generate a private key on their own given the public key and an encrypted message. It must also not fall for the trap of frequency analysis by generating random numbers. And this was the challenge that Rivest, Shamir, and Adleman tackled, eventually succeeding and naming RSA encryption after their last names (Kaliski).</p>
+    
+    <p>Before we dive into the mathematics of the algorithm, it is important to understand one-way functions. These functions are "easy" to do one way but "hard" to do the reverse. A one-way function used in RSA encryption is integer factorization. Multiplying two numbers, even if they are very large, is extremely easy for a computer. But factorizing a large number will eventually end up with some sort of guess-and-check algorithm that will take a while for a computer to execute. Therefore, if you multiply two large (large as in generally over a thousand bits, or more than 2<sup>1000</sup>prime numbers), it is easy to multiply. But given a large integer with two prime factors, it is basically impossible to factor because a supercomputer running with the most efficient algorithms today would still take many centuries to complete the prime factorization. Another one-way function that RSA encryption uses is modular exponentiation, but this will be explained later.</p>
+    
+    <table>
+      <tr>
+        <td>A "good start" would be to understand the basic principles of modular arithmetics:</td>
+        <td><a href="GHPMod_arithmetics.html">Modular arithmetics</a></td>
+      </tr>
+      <tr>
+        <td>Euler's totient function is also critical in understanding Euler's theorem later on.</td>
+        <td><a href="GHPtotient.html">Euler's totient function</a></td>
+      </tr>
+      <tr>
+        <td>Modular inverses essentially enable division in modular arithmetics, although they are a bit harder than traditional division.</td>
+        <td><a href="GHPMod_inverses.html">Modular inverses</a></td>
+      </tr>
+      <tr>
+        <td>The most important of all in order to understand RSA encryption. Euler's theorem will tie all of the previous mathematical ideas.</td>
+        <td><a href="GHPEuler.html">Euler's theorem</a></td>
+      </tr>
+      <tr>
+        <td>Why is the RSA algorithm great? And how do we generate public and private keys?</td>
+        <td><a href="GHPrsa.html">RSA algorithm and key generation</a></td>
+      </tr>
+      <tr>
+        <td>Modular exponentiation is necessary in order to deal with large numbers in the RSA algorithm.</td>
+        <td>
+          <a href="GHPmod_exponentiation.html">Modular Exponentiation</a>
+        </td>
+      </tr>
+      <tr>
+        <td>I can't plagiarise. :(</td>
+        <td><a href="https://my.noodletools.com/noodlebib/mybib.php?printBib=1">Works Cited</a></td>
+      </tr>
+    </table>
+  </body>
+</html>
